@@ -38,9 +38,10 @@ GameObject:
   - component: {fileID: 4581335169319580}
   - component: {fileID: 212348628702010384}
   - component: {fileID: 114565883685805800}
+  - component: {fileID: 61855878570327274}
   m_Layer: 0
-  m_Name: KeyButton
-  m_TagString: Untagged
+  m_Name: BeatPrefab
+  m_TagString: Beat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1793672920685370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.4, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4978263016161234}
@@ -107,6 +108,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!61 &61855878570327274
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1793672920685370}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3.89}
+  m_EdgeRadius: 0
 --- !u!102 &102568979197358114
 TextMesh:
   serializedVersion: 3
@@ -142,7 +168,7 @@ MonoBehaviour:
   Text: S
   SuccessEffect: {fileID: 1357359384694740, guid: f176905e1db3de549aa5cf0b2aa5b62c,
     type: 2}
-  FailEffect: {fileID: 1034090756194944, guid: 5afd6fa3f15557047887b90f328b42da, type: 2}
+  FailEffect: {fileID: 1147176606446884, guid: 5afd6fa3f15557047887b90f328b42da, type: 2}
 --- !u!212 &212348628702010384
 SpriteRenderer:
   m_ObjectHideFlags: 1

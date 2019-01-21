@@ -11,14 +11,14 @@ public class VisualizerExample : MonoBehaviour
     public GameObject linePrefab;
     public List<AudioClip> audioClips;
     
-    private List<Line> lines;	
+    private List<Line> lines;
     private int currentSong;
     private ReadOnlyCollection<float> magnitudeSmooth;
 
 	void Start ()
 	{		
-		currentSong = -1;
-		Application.runInBackground = true;
+        currentSong = -1;
+        Application.runInBackground = true;
         
         lines = new List<Line>();
 
@@ -48,7 +48,7 @@ public class VisualizerExample : MonoBehaviour
 	
 	private void NextSong ()
 	{
-		ClearLines ();
+		//ClearLines ();
 		
 		currentSong++;
 		
@@ -154,11 +154,4 @@ public class VisualizerExample : MonoBehaviour
         return line;
     }
 
-    private void ClearLines()
-    {
-        foreach (Line line in lines)
-            Destroy(line.gameObject);
-
-        lines.Clear();
-    }
 }
