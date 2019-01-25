@@ -20,7 +20,7 @@ public class InputTracking : MonoBehaviour {
 
     private bool HandleMouseInput()
     {
-        //if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             FollowInputPosition(Input.mousePosition);
             return true;

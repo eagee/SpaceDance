@@ -62,14 +62,14 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
 
     private void HandleFailure()
     {
-        GameObject effect = (GameObject)Instantiate(FailEffect, this.transform.position, this.transform.rotation);
+        Instantiate(FailEffect, this.transform.position, this.transform.rotation);
         GameObject.Destroy(this.gameObject);
     }
 
     private void HandleSuccess()
     {
         m_successful = true;
-        GameObject effect = (GameObject)Instantiate(SuccessEffect, this.transform.position, this.transform.rotation);
+        Instantiate(SuccessEffect, this.transform.position, this.transform.rotation);
         GameObject.Destroy(this.gameObject);
     }
 
