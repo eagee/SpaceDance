@@ -1,0 +1,12 @@
+You were the ship's main nav computer.
+You tried to thread a needle that no buccaneer would dare to follow.
+The captain's wife was on her deathbed and he wanted to get home quick.
+You've flown the width and breadth of the {galaxy | system | sector | quadrant} for many years.
+Your radar systems were {top of the line | damaged | sufficient | inoperable}.
+The charts for this area were {accuracte | recent | corrupted | outdated}.
+The gyroscope was on the fritz, we didn't know which we were pointing.
+Our star trackers were {fogged up | clear as day | askew | loose} but it didn't matter anyways.
+We collided and the next thing we knew we were drifting.
+The ship has a fixed sextant that can be used to regain some of our navigational capabilities.
+You'll need to reorient the star tracker first and then you can use the sextant to take the angles between stars.
+If we get our navigation systems back then we might be able to get home.
