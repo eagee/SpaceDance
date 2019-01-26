@@ -7,7 +7,8 @@ public class RhythmEventController : MonoBehaviour
 {
     public RhythmTool rhythmTool;
     public RhythmEventProvider eventProvider;
-
+    public float ScrollPerBeat;
+    public float MinLineSpacing;
     public float BeatPrefabSpacingSize = 0.5f;
 
     /// <summary>
@@ -19,6 +20,8 @@ public class RhythmEventController : MonoBehaviour
     /// Transform at location further right side of the scene where notes will be generated from.
     /// </summary>
     public Transform NotesRangeRight;
+    public Transform NotesRangeTop;
+    public Transform NotesRangeBottom;
 
     /// <summary>
     /// List of audio clips that can be added to the scene and played by the RhythmController
@@ -34,9 +37,7 @@ public class RhythmEventController : MonoBehaviour
     /// The beatPrefab will be the object we use to create the user-interactive, "beats"
     /// which expose letters/touchable items that users can interact with.
     /// </summary>
-    public GameObject beatPrefabR;
-    public GameObject beatPrefabG;
-    public GameObject beatPrefabB;
+    public GameObject beatPrefab;
 
     /// <summary>
     /// Beat Observers is a list of objects that will process beat events
@@ -50,6 +51,17 @@ public class RhythmEventController : MonoBehaviour
     private ReadOnlyCollection<float> magnitudeSmooth;
 
     private float m_lastPrefabX;
+
+    public string[] TestWords;
+    public int TestWordIndex;
+
+    string NextTestWord() {
+        TestWordIndex++;
+        if (TestWordIndex >= TestWords.Length) {
+            TestWordIndex = 0;
+        }
+        return TestWords[TestWordIndex];
+    }
 
     void Start()
     {
@@ -105,10 +117,34 @@ public class RhythmEventController : MonoBehaviour
 
     private void OnBeat(Beat beat)
     {
+        // default to there being enough space
+        float lowest = NotesRangeBottom.position.y + MinLineSpacing + 1f;
         foreach (var observer in BeatObservers)
         {
-            if (observer != null)
+            if (observer != null) {
                 observer.Result.OnBeat(beat);
+                if (observer.Result.Tag() == "Beat" && observer.Result.ObserverGameObject != null)
+                { 
+                    Vector3 pos = observer.Result.Position;
+                    pos.y += ScrollPerBeat;
+                    if (pos.y < lowest)
+                        lowest = pos.y;
+                    observer.Result.Position = pos;
+                }
+            }
+        }
+        // Add another line of text only if we have room
+        if (lowest > NotesRangeBottom.position.y + MinLineSpacing) {
+            float yPos = NotesRangeBottom.position.y;
+            BeatObservers.Add(CreateBeat(1, beatPrefab, Random.value, 
+                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos, 
+                NextTestWord()));
+            BeatObservers.Add(CreateBeat(2, beatPrefab, Random.value, 
+                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 2, yPos, 
+                NextTestWord()));
+            BeatObservers.Add(CreateBeat(3, beatPrefab, Random.value, 
+                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
+                NextTestWord()));
         }
     }
 
@@ -137,27 +173,15 @@ public class RhythmEventController : MonoBehaviour
         //if (xPos > NotesRangeRight.transform.position.x)
         //    xPos = NotesRangeLeft.transform.position.x;
         //m_lastPrefabX = xPos;
-        float yPos = NotesRangeLeft.position.y;
-        switch (type)
-        {
-            case OnsetType.Low:
-                BeatObservers.Add(CreateBeat(onset.index, beatPrefabB, onset.strength, NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos));
-                break;
-            case OnsetType.Mid:
-                BeatObservers.Add(CreateBeat(onset.index, beatPrefabG, onset.strength, NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 2, yPos));
-                break;
-            case OnsetType.High:
-                BeatObservers.Add(CreateBeat(onset.index, beatPrefabR, onset.strength, NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos));
-                break;
-        }
         
     }
 
-    private IBeatObserverSyncContainer CreateBeat(int onsetIndex, GameObject prefab, float opacity, float xPosition, float yPosition)
+    private IBeatObserverSyncContainer CreateBeat(int onsetIndex, GameObject prefab, float opacity, float xPosition, float yPosition, string text)
     {
         GameObject beatObject = Instantiate(prefab) as GameObject;
-        beatObject.transform.position = new Vector3(xPosition, yPosition, 0);
+        beatObject.transform.position = new Vector3(xPosition, yPosition, -1f);
         BeatBehavior beatObserver = beatObject.GetComponent<BeatBehavior>();
+        beatObserver.Text = text;
         IBeatObserver beatInterfaceImpl = beatObserver as IBeatObserver;
         IBeatObserverSyncContainer syncContainer = new IBeatObserverSyncContainer();
         syncContainer.Result = beatInterfaceImpl;
@@ -186,9 +210,12 @@ public class RhythmEventController : MonoBehaviour
         List<IBeatObserverSyncContainer> toRemove = new List<IBeatObserverSyncContainer>();
         foreach (var observer in BeatObservers)
         {
-            if ((observer.Result.Tag() == "Beat") 
-                && (observer.Result.OnsetIndex < rhythmTool.currentFrame 
-                || observer.Result.OnsetIndex > rhythmTool.currentFrame + eventProvider.offset))
+            // if ((observer.Result.Tag() == "Beat") 
+            //     && (observer.Result.OnsetIndex < rhythmTool.currentFrame 
+            //     || observer.Result.OnsetIndex > rhythmTool.currentFrame + eventProvider.offset))
+
+            if ((observer.Result.Tag() == "Beat") &&
+                observer.Result.ObserverGameObject.transform.position.y > NotesRangeTop.position.y)
             {
                 Destroy(observer.Result.ObserverGameObject);
                 toRemove.Add(observer);
@@ -211,15 +238,16 @@ public class RhythmEventController : MonoBehaviour
         }
 
         // Move each, "Beat" object based on the magnitude smoothing options above.
-        foreach (var observer in BeatObservers)
-        {
-            if (observer.Result.Tag() == "Beat" && observer.Result.ObserverGameObject != null)
-            { 
-                Vector3 pos = observer.Result.Position;
-                pos.y = (cumulativeMagnitudeSmooth[observer.Result.OnsetIndex - rhythmTool.currentFrame] * .03f) - 9f;
-                pos.y += (magnitudeSmooth[rhythmTool.currentFrame] * .03f * rhythmTool.interpolation) - 9f;
-                observer.Result.Position = pos;
-            }
-        }
+        // foreach (var observer in BeatObservers)
+        // {
+        //     if (observer.Result.Tag() == "Beat" && observer.Result.ObserverGameObject != null)
+        //     { 
+        //         Vector3 pos = observer.Result.Position;
+        //         // pos.y = (cumulativeMagnitudeSmooth[observer.Result.OnsetIndex - rhythmTool.currentFrame] * .03f) - 9f;
+        //         // pos.y -= (magnitudeSmooth[rhythmTool.currentFrame] * .03f * rhythmTool.interpolation) - 9f;
+        //         pos.y += ScrollConstant * sum;
+        //         observer.Result.Position = pos;
+        //     }
+        // }
     }
 };

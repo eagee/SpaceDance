@@ -22,7 +22,7 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
         m_TextMesh = GetComponentInChildren<TextMesh>();
         m_TextMesh.text = Text;
         m_inContactWithStar = false;
-        m_StringKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), Text.ToUpper());
+        m_StringKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), "S");
     }
 
     void CheckKeyPressed()
