@@ -37,19 +37,23 @@ public class RobotDancingSystem : MonoBehaviour
 			//Add token to sentence.
 			var status = sentence.AddToken( tokenOptions[sentence.tokens.Count][selectedTokenIndex] );
 			sentence.status = status;
-			OnTokenAdded?.Invoke(actionTimer);
+
+            if (OnTokenAdded != null)
+                OnTokenAdded.Invoke(actionTimer);
 
 			//Failure?
 			if(sentence.status == SentenceStatus.Failed) {
 				//Fire an OnSentenceComplete event here!
-				OnSentenceFailed?.Invoke();
+				if (OnSentenceFailed != null)
+                    OnSentenceFailed.Invoke();
 			}
 
 			//Are we done adding tokens? If so, success!
 			if(sentence.status == SentenceStatus.InProgress && sentence.tokens.Count >= tokenOptions.Length){
 				sentence.status = SentenceStatus.Success;
 				//Fire an OnSentenceComplete event here!
-				OnSentenceComplete?.Invoke();
+				if (OnSentenceComplete != null)
+                    OnSentenceComplete.Invoke();
 			}
 		}
 		actionTimer = 0f;
@@ -98,8 +102,10 @@ public class RobotDancingSystem : MonoBehaviour
 			return status;
 		}
 
-		public override string ToString() => OutputText;
-	}
+        public override string ToString() {
+            return OutputText;
+        }
+    }
 	
 	//=============================================================================================
 	//
@@ -128,8 +134,10 @@ public class RobotDancingSystem : MonoBehaviour
 			return new string(chars);
 		}
 
-		public override string ToString() => tokenText;
-	}
+        public override string ToString() {
+            return tokenText;
+        }
+    }
 
 	public enum SentenceStatus { InProgress, Success, Failed }
 	public enum SentenceTokenType { Normal, Invalid, Special }
