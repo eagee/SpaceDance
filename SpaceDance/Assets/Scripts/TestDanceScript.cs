@@ -165,7 +165,6 @@ public class TestDanceScript : MonoBehaviour, IBeatObserver {
 
     public void UpdateDance()
     {
-        //
         m_startingOffset = TransformToFollow.position;
         if (m_danceNumber == 0)
             DoDiamondDance();
