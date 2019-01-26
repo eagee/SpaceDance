@@ -16,6 +16,8 @@ public class DanceZone : MonoBehaviour, IBeatObserver
     public DanceSpinBar SpinBar;
     public Transform DanceTargetL;
     public Transform DanceTargerR;
+    public UnityStandardAssets._2D.Camera2DFollow Camera;
+    public Transform DanceCameraTarget;
     public List<int> DanceRotation;
 
     private int m_currentDanceNumber;
@@ -25,21 +27,36 @@ public class DanceZone : MonoBehaviour, IBeatObserver
     void Start()
     {
         m_currentDanceNumber = 0;
-        m_currentState = DanceZoneState.Idle;
+        SetState(DanceZoneState.Idle);
+    }
+
+    void SetState(DanceZoneState state)
+    {
+        m_currentState = state;
+        if(m_currentState == DanceZoneState.Dancing)
+        {
+            Camera.target = DanceCameraTarget;
+        }
+        else
+        {
+            Camera.target = PlayerRobot.transform;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag == "Player" && m_currentState == DanceZoneState.Idle)
         {
+            Debug.Log("Trigger Entered: " + col.gameObject);
             PlayerRobot = col.gameObject.GetComponent<Dancer>();
             PlayerRobot.TransformToFollow = DanceTargerR;
+            DormantRobot.TransformToFollow = DanceTargetL;
             PlayerRobot.DanceBuddy = DormantRobot;
             DormantRobot.DanceBuddy = PlayerRobot;
             PlayerRobot.SetDancerStatus(DancerStatus.Dancing);
             DormantRobot.SetDancerStatus(DancerStatus.Dancing);
             UpdateDanceNumbers();
-            m_currentState = DanceZoneState.Dancing;
+            SetState(DanceZoneState.Dancing);
             // TODO: Trigger a song change in the RythmController
         }
     }
@@ -60,6 +77,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         {
             m_currentDanceNumber = 0;
         }
+        Debug.Log("Changing dance number to: " + m_currentDanceNumber.ToString());
         UpdateDanceNumbers();
     }
 
