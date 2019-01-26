@@ -25142,7 +25142,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SinOffset: 151.20003
+    - _SinOffset: 35.50003
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -30480,7 +30480,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _SinOffset: 151.20003
+    - _SinOffset: 35.50003
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -35381,12 +35381,13 @@ MonoBehaviour:
   rhythmTool: {fileID: 1169024061}
   eventProvider: {fileID: 1169024063}
   ScrollPerBeat: 1
-  MinLineSpacing: 1
+  MinLineSpacing: 0.5
   BeatPrefabSpacingSize: 3.5
   NotesRangeLeft: {fileID: 349292737}
   NotesRangeRight: {fileID: 1076114846}
   NotesRangeTop: {fileID: 1395619777}
   NotesRangeBottom: {fileID: 319908100}
+  v_NotesRangeMiddle: {x: 0, y: 0, z: 0}
   audioClips:
   - {fileID: 8300000, guid: d9a6661f42f99ba4bade9ac9d5ff931b, type: 3}
   - {fileID: 8300000, guid: 28e7bea21f4a8b5419e22163f4848db3, type: 3}
@@ -35410,6 +35411,8 @@ MonoBehaviour:
   - Joe's
   - Or
   - Not
+  - ______
+  - whatever
   TestWordIndex: 0
 --- !u!1 &1209841131
 GameObject:

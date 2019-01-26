@@ -22,6 +22,7 @@ public class RhythmEventController : MonoBehaviour
     public Transform NotesRangeRight;
     public Transform NotesRangeTop;
     public Transform NotesRangeBottom;
+    public Vector3 v_NotesRangeMiddle;
 
     /// <summary>
     /// List of audio clips that can be added to the scene and played by the RhythmController
@@ -74,6 +75,7 @@ public class RhythmEventController : MonoBehaviour
         eventProvider.SongEnded += OnSongEnded;
         magnitudeSmooth = rhythmTool.low.magnitudeSmooth;
         m_lastPrefabX = NotesRangeLeft.transform.position.x;
+        v_NotesRangeMiddle = (NotesRangeTop.position + NotesRangeBottom.position) / 2f;
         if (audioClips.Count <= 0)
         {
             Debug.LogWarning("no songs configured");
@@ -119,6 +121,37 @@ public class RhythmEventController : MonoBehaviour
     {
         // default to there being enough space
         float lowest = NotesRangeBottom.position.y + MinLineSpacing + 1f;
+
+        // destroy what's gone off the top, dim what's gone past the middle
+        foreach (var observer in BeatObservers)
+        {
+            if (observer != null) {
+                observer.Result.OnBeat(beat);
+                if (observer.Result.Tag() == "Beat" && observer.Result.ObserverGameObject != null)
+                { 
+                    Vector3 pos = observer.Result.Position;
+                    pos.y += ScrollPerBeat;
+                    if (pos.y < lowest)
+                        lowest = pos.y;
+                    observer.Result.Position = pos;
+                    // TODO: replace this, it's super inefficient.
+                    if (pos.y > v_NotesRangeMiddle.y - 1f) {
+                        TextMesh m_TextMesh = 
+                            observer.Result.ObserverGameObject.GetComponentInChildren<TextMesh>();
+                        Color tcolor = m_TextMesh.color;
+                        if (pos.y < v_NotesRangeMiddle.y + 1f) {
+                            tcolor.g = 0.1f;
+                        } else {
+                            tcolor.g = 1f;
+                            tcolor.a = 0.5f;
+                        }
+                        m_TextMesh.color = tcolor;
+                    }
+                    // end TODO
+                }
+            }
+        }
+        // dim what's gone past the middle
         foreach (var observer in BeatObservers)
         {
             if (observer != null) {
@@ -136,13 +169,13 @@ public class RhythmEventController : MonoBehaviour
         // Add another line of text only if we have room
         if (lowest > NotesRangeBottom.position.y + MinLineSpacing) {
             float yPos = NotesRangeBottom.position.y;
-            BeatObservers.Add(CreateBeat(1, beatPrefab, Random.value, 
+            BeatObservers.Add(CreateBeat(1, beatPrefab, 1f, 
                 NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos, 
                 NextTestWord()));
-            BeatObservers.Add(CreateBeat(2, beatPrefab, Random.value, 
+            BeatObservers.Add(CreateBeat(2, beatPrefab, 1f, 
                 NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 2, yPos, 
                 NextTestWord()));
-            BeatObservers.Add(CreateBeat(3, beatPrefab, Random.value, 
+            BeatObservers.Add(CreateBeat(3, beatPrefab, 1f, 
                 NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
                 NextTestWord()));
         }
@@ -179,9 +212,11 @@ public class RhythmEventController : MonoBehaviour
     private IBeatObserverSyncContainer CreateBeat(int onsetIndex, GameObject prefab, float opacity, float xPosition, float yPosition, string text)
     {
         GameObject beatObject = Instantiate(prefab) as GameObject;
+            xPosition += Random.value;
         beatObject.transform.position = new Vector3(xPosition, yPosition, -1f);
         BeatBehavior beatObserver = beatObject.GetComponent<BeatBehavior>();
         beatObserver.Text = text;
+        beatObserver.Opacity = opacity;
         IBeatObserver beatInterfaceImpl = beatObserver as IBeatObserver;
         IBeatObserverSyncContainer syncContainer = new IBeatObserverSyncContainer();
         syncContainer.Result = beatInterfaceImpl;

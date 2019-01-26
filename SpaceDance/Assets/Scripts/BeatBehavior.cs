@@ -6,6 +6,7 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
 {
 
     public string Text;
+    public float Opacity;
     public GameObject SuccessEffect;
     public GameObject FailEffect;
     private bool m_activeKeyPressed;
@@ -21,6 +22,9 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
         m_activeKeyPressed = false;
         m_TextMesh = GetComponentInChildren<TextMesh>();
         m_TextMesh.text = Text;
+        Color tcolor = Color.white;
+        tcolor.a = Opacity;
+        m_TextMesh.color = tcolor;
         m_inContactWithStar = false;
         m_StringKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), "S");
     }
