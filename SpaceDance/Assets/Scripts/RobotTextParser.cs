@@ -20,7 +20,7 @@ public class RobotTextParser {
 					//New word token
 					case ' ':
 						tokens.Add(new RobotDancingSystem.SentenceToken(RobotDancingSystem.SentenceTokenType.Normal, tokenBuilder.ToString()));
-						tokenBuilder.Clear();
+						//tokenBuilder.Clear();
 						break;
 
 					//Start of choice group

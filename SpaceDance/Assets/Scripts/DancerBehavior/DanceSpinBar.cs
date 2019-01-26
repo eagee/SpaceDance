@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformModify : MonoBehaviour, IBeatObserver {
+public class DanceSpinBar : MonoBehaviour, IBeatObserver {
 
     public bool allowSpin = false;
     public float m_baseSize = 8.0f;
@@ -10,6 +10,13 @@ public class TransformModify : MonoBehaviour, IBeatObserver {
     private float m_targetSize;
     private bool m_OnBeat = false;
     private int m_SpinType = 0;
+    private int m_danceNumber = 0;
+
+    public void SetDanceNumber(int danceNumber)
+    {
+        m_danceNumber = danceNumber;
+    }
+
 	// Use this for initialization
 	void Start () {
         m_OnBeat = false;
