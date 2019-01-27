@@ -51,7 +51,8 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
     public void SetDancerStatus(DancerStatus status)
     {
-        if(m_currentStatus == DancerStatus.Dormant && status != DancerStatus.Dormant && status != DancerStatus.Controllable)
+        //Debug.Log("SetDancerStatus Dancer: " + gameObject.name + " Status: " + status.ToString());
+        if (m_currentStatus == DancerStatus.Dormant && status != DancerStatus.Dormant && status != DancerStatus.Controllable)
         {
             GameObject.Instantiate(SparkEffect, this.transform.position, this.transform.rotation);
         }
