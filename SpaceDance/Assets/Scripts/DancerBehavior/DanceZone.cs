@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DanceZone : MonoBehaviour, IBeatObserver
 {
-    enum DanceZoneState
+    public enum DanceZoneState
     {
         Idle,
         Dancing,
@@ -24,7 +24,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
     public List<int> DanceRotation;
 
     private int m_currentDanceNumber;
-    private DanceZoneState m_currentState;
+    public DanceZoneState m_currentState;
 
     // Start is called before the first frame update
     void Start()

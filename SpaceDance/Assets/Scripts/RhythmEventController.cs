@@ -62,6 +62,46 @@ public class RhythmEventController : MonoBehaviour
     public TextMesh WordLeft;
     public TextMesh WordRight;
     public bool ReadyForKey;
+    public RobotDancingSystem.SentenceToken[] CurrentStory;
+    public int CurrentStoryIndex = -1;
+    public int DecisionTextIndex = -1;
+
+
+    string NextStoryWord() {
+        string retword = "Error!";
+        if (CurrentStoryIndex != -1) {
+            if (CurrentStory[CurrentStoryIndex].tokenType != 
+                RobotDancingSystem.SentenceTokenType.Normal) {
+                while (CurrentStory[CurrentStoryIndex].tokenType != 
+                       RobotDancingSystem.SentenceTokenType.Normal)
+                    CurrentStoryIndex++;
+                retword = "______";
+            } else {
+                retword = CurrentStory[CurrentStoryIndex].tokenText;
+                CurrentStoryIndex++;
+            }   
+            if (CurrentStoryIndex >= CurrentStory.Length) CurrentStoryIndex = -1;  
+        }
+        return retword;
+    }
+
+    string NextDecisionWord() {
+        string retword = "Error!";
+        if (DecisionTextIndex != -1) {
+            while (CurrentStory[DecisionTextIndex].tokenType != 
+                RobotDancingSystem.SentenceTokenType.Special) {
+                DecisionTextIndex++;
+                if (DecisionTextIndex >= CurrentStory.Length) {
+                    DecisionTextIndex = -1;
+                    return "end of decision text";  
+                }
+            }
+            retword = CurrentStory[DecisionTextIndex].tokenText;
+            DecisionTextIndex++;
+            if (DecisionTextIndex >= CurrentStory.Length) DecisionTextIndex = -1;  
+        }
+        return retword;        
+    }
 
     string NextTestWord() {
         TestWordIndex++;
@@ -74,8 +114,7 @@ public class RhythmEventController : MonoBehaviour
     string GetWord(string key) {
         string retword = "error";
         TextMesh thisone = null;
-        string nextword = "_";
-        while (nextword[0] == '_') nextword = NextTestWord();
+        string nextword = NextDecisionWord();
         if (key == "Up") thisone = WordUp;
         if (key == "Down") thisone = WordDown;
         if (key == "Left") thisone = WordLeft;
@@ -99,10 +138,10 @@ public class RhythmEventController : MonoBehaviour
         magnitudeSmooth = rhythmTool.low.magnitudeSmooth;
         m_lastPrefabX = NotesRangeLeft.transform.position.x;
         v_NotesRangeMiddle = (NotesRangeTop.position + NotesRangeBottom.position) / 2f;
-        WordUp.text = NextTestWord();
-        WordDown.text = NextTestWord();
-        WordLeft.text = NextTestWord();
-        WordRight.text = NextTestWord();
+        WordUp.text = NextDecisionWord();
+        WordDown.text = NextDecisionWord();
+        WordLeft.text = NextDecisionWord();
+        WordRight.text = NextDecisionWord();
         ReadyForKey = false;
 
         if (audioClips.Count <= 0)
@@ -195,18 +234,44 @@ public class RhythmEventController : MonoBehaviour
             }
         }
 
-        // Add another line of text only if we have room
-        if (lowest > NotesRangeBottom.position.y + MinLineSpacing) {
-            float yPos = NotesRangeBottom.position.y;
-            BeatObservers.Add(CreateBeat(1, beatPrefab, 1f, 
-                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos, 
-                NextTestWord()));
-            BeatObservers.Add(CreateBeat(2, beatPrefab, 1f, 
-                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
-                NextTestWord()));
-            BeatObservers.Add(CreateBeat(3, beatPrefab, 1f, 
-                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 5, yPos, 
-                NextTestWord()));
+        // If we're dancing...
+        foreach (var observer in BeatObservers)
+        {
+            // load a story if we don't have one.
+            if (CurrentStoryIndex == -1) {
+                if (observer != null && observer.Result.ObserverGameObject != null) {
+                    DanceZone zone = observer.Result.ObserverGameObject.GetComponent<DanceZone>();
+                    if (zone != null) {
+                        Debug.Log("I found a dance zone!");
+                        if (zone.enabled && zone.m_currentState == DanceZone.DanceZoneState.Dancing) {
+                            Debug.Log("I found an Dancing dance zone!");
+                            Debug.Log("Its text is " + zone.Story);
+                            CurrentStory = RobotTextParser.Parse(zone.Story);
+                            CurrentStoryIndex = 0;
+
+                        }
+                        if (zone.enabled && zone.m_currentState == DanceZone.DanceZoneState.Idle) {
+                            Debug.Log("I found an Idle dance zone!");
+                        }
+                    }
+                }
+            }       
+        }
+
+        // Add another line of text only if we have room and have story
+        if (CurrentStoryIndex != -1) {
+            if (lowest > NotesRangeBottom.position.y + MinLineSpacing) {
+                float yPos = NotesRangeBottom.position.y;
+                BeatObservers.Add(CreateBeat(1, beatPrefab, 1f, 
+                    NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos, 
+                    NextStoryWord()));
+                BeatObservers.Add(CreateBeat(2, beatPrefab, 1f, 
+                    NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
+                    NextStoryWord()));
+                BeatObservers.Add(CreateBeat(3, beatPrefab, 1f, 
+                    NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 5, yPos, 
+                    NextStoryWord()));
+            }
         }
     }
 
