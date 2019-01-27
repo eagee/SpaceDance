@@ -13,7 +13,6 @@ public class RepairScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger Entered!");
         if(collision.gameObject.tag == "Robot")
         {
             m_active = true;
@@ -22,7 +21,6 @@ public class RepairScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Trigger Exit!");
         m_active = false;
     }
 
