@@ -112,6 +112,123 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &63509765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8525128605157548200, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_Name
+      value: NavigationRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548200, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: RepairPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 894129073}
+    - target: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: RepairPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1080685304}
+    - target: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: RepairPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 964268239}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128605157548212, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300078, guid: 0b9832ab81af1b94fa1ed9f35b66ba0d,
+        type: 3}
+    - target: {fileID: 8525128605157548203, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e4ed49f01858b5b499b9c0b90fce23e2, type: 2}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: _map
+      value: 
+      objectReference: {fileID: 1603191123}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18655bcef13c23e4fb1bc536120cc83d, type: 3}
+--- !u!114 &63509766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
+    type: 3}
+  m_PrefabInstance: {fileID: 63509765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e2d768dfe168744b5f068e13987b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &193232705 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 193232705, guid: 491311b88f9de9b40bbc8b32b0ca9336,
@@ -256,6 +373,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
+      propertyPath: DanceRotation.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
       propertyPath: DormantRobot
       value: 
       objectReference: {fileID: 1123661011}
@@ -277,12 +399,33 @@ PrefabInstance:
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
       propertyPath: DanceRotation.Array.data[2]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
       propertyPath: DanceRotation.Array.data[1]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: Story
+      value: The captain radioed the engine room to tell you that we needed {full
+        | all | partial | more} power directed to the {aft | port | starboard | bow}
+        thrusters. Always loyal to the captain you did all you could. The impact took
+        out the {liquid oxygen | hydrogen | nitrogen | antimatter} line and the control
+        panel. You lost power to the main engines and our thrusters misfired throwing
+        us into an erratic {spin | wobble | tumble | flip}. That {fractured | snapped
+        | collapsed | cracked} part of the hull. We became became ballistic. A twirling
+        object in space. The fuel line is still {ruptured | disconnected | missing
+        | gone}. Presumably it is floating around {fifty | one hundred | one thousand
+        | a few} miles back. The {life support | galley | sewage | hot tub} systems
+        used the same kind of piping. Thank god we found this ship at Ikea. If you
+        {reweld | replace | fix | modify} the pipes maybe we can fly again.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
@@ -341,6 +484,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e1fe8b7ac151e46baa4fdb64e82fac, type: 3}
+--- !u!1001 &780177516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7025732099402016284, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Name
+      value: NavigationRepairPoint1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.0500374
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016286, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48112ee0dc4152342b111e70bbf4aa51, type: 3}
 --- !u!1001 &867026430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -427,6 +644,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 779651963}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &894129073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+    type: 3}
+  m_PrefabInstance: {fileID: 780177516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &954542006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
@@ -439,6 +662,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e2d768dfe168744b5f068e13987b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &964268239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+    type: 3}
+  m_PrefabInstance: {fileID: 1632603550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1080384883
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7025732099402016284, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Name
+      value: NavigationRepairPoint2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016286, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48112ee0dc4152342b111e70bbf4aa51, type: 3}
+--- !u!4 &1080685304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+    type: 3}
+  m_PrefabInstance: {fileID: 1080384883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1099906267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -840,6 +1149,10 @@ MonoBehaviour:
     ResultType: 
   - ObjectField: {fileID: 1123661011}
     ResultType: 
+  - ObjectField: {fileID: 63509766}
+    ResultType: 
+  - ObjectField: {fileID: 1293272049}
+    ResultType: 
   TestWords:
   - TEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST
     WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST
@@ -862,6 +1175,142 @@ MonoBehaviour:
     WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST
     WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDSTEST WORDS
   TestWordIndex: 0
+--- !u!1001 &1169356953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1299666640707650798, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_Name
+      value: NavigationDanceZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650798, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DormantRobot
+      value: 
+      objectReference: {fileID: 63509766}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: PlayerRobot
+      value: 
+      objectReference: {fileID: 193232705}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 1209841137}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: Story
+      value: 'You were the ship''s main nav computer. You tried to thread a needle
+        that no buccaneer would dare to follow. The captain''s wife was on her deathbed
+        and he wanted to get home quick. You''ve flown the width and breadth of the
+        {galaxy | system | sector | quadrant} for many years. Your radar systems were
+        {top of the line | damaged | sufficient | inoperable}. The charts for this
+        area were {accuracte | recent | corrupted | outdated}. The gyroscope was on
+        the fritz, we didn''t know which we were pointing. Our star trackers were
+        {fogged up | clear as day | askew | loose} but it didn''t matter anyways.
+        We collided and the next thing we knew we were drifting. The ship has a fixed
+        sextant that can be used to regain some of our navigational capabilities.
+        You''ll need to reorient the star tracker first and then you can use the sextant
+        to take the angles between stars. If we get our navigation systems back then
+        we might be able to get home. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5e1fe8b7ac151e46baa4fdb64e82fac, type: 3}
 --- !u!1 &1209841131
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +1429,18 @@ MonoBehaviour:
   lookAheadFactor: 0
   lookAheadReturnSpeed: 0
   lookAheadMoveThreshold: 0
+--- !u!114 &1293272049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1169356953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd97458f6b574f47867c8c3bd72fcec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1377918225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,8 +1712,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 34.905434, y: 15.537472}
-      - {x: 23.859549, y: 15.291506}
-      - {x: 3.8774738, y: 14.994299}
+      - {x: 24.185299, y: 15.128629}
+      - {x: 19.192114, y: 16.61701}
+      - {x: 16.597721, y: 12.308205}
+      - {x: 12.487529, y: 16.969082}
+      - {x: 9.19364, y: 12.141618}
+      - {x: 5.6691003, y: 16.378738}
+      - {x: -1.4302726, y: 12.820497}
+      - {x: -4.2805877, y: 15.019311}
       - {x: -19.668503, y: 14.783337}
       - {x: -18.93926, y: 9.519179}
       - {x: -24.570644, y: 12.742885}
@@ -1283,7 +1750,7 @@ PolygonCollider2D:
       - {x: 50.875618, y: 11.298696}
       - {x: 49.047073, y: 13.348543}
       - {x: 43.313778, y: 11.096746}
-      - {x: 42.493313, y: 17.022812}
+      - {x: 42.411873, y: 15.638372}
 --- !u!114 &1603191123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1783,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1632603550
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7025732099402016284, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Name
+      value: NavigationRepairPoint3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.973373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7025732099402016286, guid: 48112ee0dc4152342b111e70bbf4aa51,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48112ee0dc4152342b111e70bbf4aa51, type: 3}
 --- !u!4 &1642363911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7025732099402016287, guid: 48112ee0dc4152342b111e70bbf4aa51,
@@ -1786,6 +2327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
+      propertyPath: DanceRotation.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
       propertyPath: DormantRobot
       value: 
       objectReference: {fileID: 954542006}
@@ -1817,7 +2363,29 @@ PrefabInstance:
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
       propertyPath: DanceRotation.Array.data[2]
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: Story
+      value: You are the shields robot the kept the shields running and the ship strong
+        before the rogue {shock wave | gravitational well | asteroid | space whale}
+        hit. Before this the only job you had to do was keep things safe when the
+        occasional {space junk | lost baggage | wreckage | rock} ran into the ship.
+        You were a {proud | simple | functional | skilled} robot that kept people
+        safe. You did your job well, you were a good robot. The people around you
+        would dance and sing with me. You felt like you could protect them and keep
+        the ship alive. When disaster struck the shields {flickered | phased | dropped
+        | crashed}. There was nothing to protect the hull and the ship lost power.
+        You used your emergency power reserve to power the shields to buy the passengers
+        a precious few {seconds | minutes | hours | days} That was the last you knew.
+        None of them made it and we lost most of our crew. We can't fly without shields
+        so we can't go home until they're fixed.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
