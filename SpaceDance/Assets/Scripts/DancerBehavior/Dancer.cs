@@ -20,6 +20,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     public float RepairTime = 5f;
     private int m_repairIndex = 0;
     private float m_repairTimer = 10f;
+    public int RepairDirection = 2;
 
     /// <summary>
     ///  Direction and behavioral values/consts 
@@ -263,7 +264,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
     void HandleActiveBehavior()
     {
-        GetComponent<Animator>().SetInteger("Direction", NORTH);
+        GetComponent<Animator>().SetInteger("Direction", RepairDirection);
         //GetComponent<Animator>().SetBool("Dancing", true);
         m_repairTimer += Time.deltaTime;
         if(m_repairTimer >= RepairTime)
