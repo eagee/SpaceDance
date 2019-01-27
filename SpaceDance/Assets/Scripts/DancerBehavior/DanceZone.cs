@@ -33,6 +33,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
 
     void SetState(DanceZoneState state)
     {
+        if(m_currentState != DanceZoneState.Failure && m_currentState != DanceZoneState.Success)
         m_currentState = state;
         if(m_currentState == DanceZoneState.Dancing)
         {

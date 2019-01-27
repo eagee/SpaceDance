@@ -56,7 +56,9 @@ public class Dancer : MonoBehaviour, IBeatObserver
             GameObject.Instantiate(SparkEffect, this.transform.position, this.transform.rotation);
         }
 
-        m_currentStatus = status;
+        if (m_currentStatus != DancerStatus.Dead)
+            m_currentStatus = status;
+
         if(m_currentStatus == DancerStatus.Controllable || m_currentStatus == DancerStatus.Active)
         {
             GetComponent<BoxCollider2D>().enabled = true;
