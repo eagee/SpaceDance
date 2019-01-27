@@ -21,20 +21,12 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
 	void Start () {
         m_OnBeat = false;
         m_targetSize = m_baseSize;
-        m_SpinType = 0;
-    }
-
-    public void UpdateBehavior()
-    {
-        if(allowSpin)
-        {
-            m_SpinType++;
-            if (m_SpinType >= 3) m_SpinType = 0;
-        }
+        m_danceNumber = 0;
     }
 
     public void UpdateBeat()
     {
+        
         m_OnBeat = !m_OnBeat;
         if (m_OnBeat)
         {
@@ -50,34 +42,25 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
 	void Update () {
         Vector3 vec = this.transform.localScale;
         float adjustedTargetSize = m_targetSize;
-        if (allowSpin)
-        { 
             
-            if(m_SpinType == 2)
-            {
-                adjustedTargetSize -= 6.0f;
-            }
+        if(m_danceNumber == 0)
+        {
             vec.x = Mathf.Lerp(vec.x, adjustedTargetSize, Time.deltaTime);
             this.transform.localScale = vec;
-
-            if(m_SpinType != 0)
-            {
-                if(m_SpinType == 2)
-                {
-                    Vector3 rot = new Vector3(0f, 0f, 130f * Time.deltaTime);
-                    this.transform.Rotate(rot);
-                }
-                else
-                {
-                    Vector3 rot = new Vector3(0f, 0f, 50f * Time.deltaTime);
-                    this.transform.Rotate(rot);
-                }
-                
-            }
         }
-        else
+        else if (m_danceNumber == 1)
         {
-            vec.y = Mathf.Lerp(vec.y, adjustedTargetSize, Time.deltaTime);
+            Vector3 rot = new Vector3(0f, 0f, 50f * Time.deltaTime);
+            this.transform.Rotate(rot);
+            vec.x = Mathf.Lerp(vec.x, adjustedTargetSize, Time.deltaTime);
+            this.transform.localScale = vec;
+        }
+        else if (m_danceNumber == 2)
+        {
+            adjustedTargetSize -= 4.0f;
+            Vector3 rot = new Vector3(0f, 0f, 130f * Time.deltaTime);
+            this.transform.Rotate(rot);
+            vec.x = Mathf.Lerp(vec.x, adjustedTargetSize, Time.deltaTime);
             this.transform.localScale = vec;
         }
     }
@@ -109,7 +92,7 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
 
     public void OnChange(int index, float change)
     {
-        UpdateBehavior();
+        //UpdateBehavior();
     }
     public Vector3 Position
     {

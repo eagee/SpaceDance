@@ -42,7 +42,7 @@ public class TestDanceScript : MonoBehaviour, IBeatObserver {
 
     private void DoDiamondDance()
     {
-        GetComponent<Animator>().speed = 1.0f;
+        GetComponent<Animator>().speed = 0.5f;
         Reverse = false;
         // Move our character based on the direction specified
         if (m_direction == SOUTH)
