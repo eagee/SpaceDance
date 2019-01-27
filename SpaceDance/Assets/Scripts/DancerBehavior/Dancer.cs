@@ -38,6 +38,12 @@ public class Dancer : MonoBehaviour, IBeatObserver
     /// </summary>
     private DancerStatus m_currentStatus;
     private float m_currentHealth;
+
+    public float CurrentHealth
+    {
+        get { return m_currentHealth; }
+        set { m_currentHealth = value; }
+    }
     private float m_HorizontalVelocity;
     private float m_VerticalVelocity;
     private int m_danceNumber;
@@ -91,7 +97,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     {
         m_danceNumber = 0;
         SetDancerStatus(StartingStatus);
-        m_currentHealth = StartingHealth;
+        CurrentHealth = StartingHealth;
         m_startingOffset = this.transform.position;
         m_repairIndex = 0;
         m_repairTimer = 3f;

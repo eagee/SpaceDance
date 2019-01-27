@@ -36,6 +36,11 @@ public interface IBeatObserver {
     /// <param name="index"></param>
     /// <param name="change"></param>
     void OnChange(int index, float change);
+
+    /// <summary>
+    /// Triggered when the player misses a key interaction when processing the beat.
+    /// </summary>
+    void OnMissedBeat();
     /// <summary>
     /// Exposes the position for this object, allowing it to be modified by the 
     /// rhythm controller if necessary.

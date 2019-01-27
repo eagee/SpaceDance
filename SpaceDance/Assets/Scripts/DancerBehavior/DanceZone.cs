@@ -12,6 +12,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         Failure
     }
 
+    public float DamageOnMissedBeat = 10f;
     public string Story;
     public Dancer DormantRobot;
     public Dancer PlayerRobot;
@@ -47,7 +48,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         }
         if(m_currentState == DanceZoneState.Success)
         {
-            DormantRobot.SetDancerStatus(DancerStatus.Dead);
+            DormantRobot.SetDancerStatus(DancerStatus.Active);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
     }
@@ -128,6 +129,11 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         ChangeDanceNumber();
     }
 
+    public void OnMissedBeat()
+    {
+        if (DormantRobot != null)
+            DormantRobot.CurrentHealth -= DamageOnMissedBeat;
+    }
     public Vector3 Position
     {
         get
