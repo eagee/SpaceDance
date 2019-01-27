@@ -156,6 +156,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     {
         m_targetPosition = TransformToFollow.position;
         GetComponent<Animator>().SetBool("Dancing", false);
+        GetComponent<Animator>().speed = 0.5f;
 
         // Set our sorting order assuming y depth translates to z depth
         if (DanceBuddy.transform.position.y > this.transform.position.y)
