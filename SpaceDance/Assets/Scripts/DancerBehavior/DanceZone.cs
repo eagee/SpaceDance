@@ -12,6 +12,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         Failure
     }
 
+    public string Story;
     public Dancer DormantRobot;
     public Dancer PlayerRobot;
     public DanceSpinBar SpinBar;

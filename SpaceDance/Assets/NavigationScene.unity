@@ -277,7 +277,12 @@ PrefabInstance:
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
       propertyPath: DanceRotation.Array.data[2]
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
@@ -1797,6 +1802,21 @@ PrefabInstance:
     - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299666640707650796, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
+        type: 3}
+      propertyPath: DanceRotation.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1299666640707650797, guid: e5e1fe8b7ac151e46baa4fdb64e82fac,
