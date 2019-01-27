@@ -101,6 +101,11 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        
+    }
     public Vector3 Position
     {
         get
@@ -130,6 +135,11 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
         {
            // do nothing
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 
 }

@@ -209,6 +209,11 @@ public class TestDanceScript : MonoBehaviour, IBeatObserver {
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        
+    }
     public Vector3 Position
     {
         get
@@ -239,6 +244,11 @@ public class TestDanceScript : MonoBehaviour, IBeatObserver {
         {
            // do nothing
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 
 }

@@ -367,6 +367,11 @@ public class Dancer : MonoBehaviour, IBeatObserver
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        
+    }
     public Vector3 Position
     {
         get
@@ -397,5 +402,10 @@ public class Dancer : MonoBehaviour, IBeatObserver
         {
             // do nothing
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 }

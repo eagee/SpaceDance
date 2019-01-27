@@ -142,6 +142,21 @@ public class DanceZone : MonoBehaviour, IBeatObserver
                 DormantRobot.CurrentHealth -= DamageOnMissedBeat;
                 if(DormantRobot.CurrentHealth <= 0f)
                 {
+                    SetState(DanceZoneState.Failure);
+                }
+            }
+        }
+    }
+
+    public void OnDanceFinished()
+    {
+        if (m_currentState == DanceZoneState.Dancing)
+        {
+            if (DormantRobot != null)
+            {
+                DormantRobot.CurrentHealth -= DamageOnMissedBeat;
+                if (DormantRobot.CurrentHealth > 0f)
+                {
                     SetState(DanceZoneState.Success);
                 }
             }
@@ -176,5 +191,10 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         {
             // do nothing
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 }

@@ -44,39 +44,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4787193576997456, guid: fabb4ffb70b0eb44882b897c0d276940, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787193576997456, guid: fabb4ffb70b0eb44882b897c0d276940, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787193576997456, guid: fabb4ffb70b0eb44882b897c0d276940, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 212738261287224408, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114647028470676248, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821291833294883802, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_Anchor
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821291833294883802, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 90c8dabbca706be4b82f224640000ce6,
-        type: 3}
-    - target: {fileID: 3821291833294883802, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_FontSize
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 887305656930466092, guid: fabb4ffb70b0eb44882b897c0d276940,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 90c8dabbca706be4b82f224640000ce6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fabb4ffb70b0eb44882b897c0d276940, type: 3}
