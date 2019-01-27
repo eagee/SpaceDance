@@ -202,10 +202,10 @@ public class RhythmEventController : MonoBehaviour
                 NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize, yPos, 
                 NextTestWord()));
             BeatObservers.Add(CreateBeat(2, beatPrefab, 1f, 
-                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 2, yPos, 
+                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
                 NextTestWord()));
             BeatObservers.Add(CreateBeat(3, beatPrefab, 1f, 
-                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 3, yPos, 
+                NotesRangeLeft.transform.position.x + BeatPrefabSpacingSize * 5, yPos, 
                 NextTestWord()));
         }
     }
