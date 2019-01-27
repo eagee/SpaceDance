@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1408387744473443723}
   - component: {fileID: 1408387744473443722}
   - component: {fileID: 1408387744473443721}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WordRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 1408387744704488318}
   - component: {fileID: 1408387744704488317}
   - component: {fileID: 1408387744704488316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WordLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 21300000, guid: 052ffb8ef808cec4b8b1092f8e6a3cc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -366,7 +366,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 21300000, guid: 07cd8aa270b3af349906ad5f4570129e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1408387745096397346}
   - component: {fileID: 1408387745096397345}
   - component: {fileID: 1408387745096397344}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WordUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 21300000, guid: 1986400d73b92b545a6a658e2ee24d6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 1408387745754558653}
   - component: {fileID: 1408387745754558652}
   - component: {fileID: 1408387745754558651}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WordDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 300
   m_Sprite: {fileID: 21300000, guid: 3d5dfeb94776aa04284ab8441b993640, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
