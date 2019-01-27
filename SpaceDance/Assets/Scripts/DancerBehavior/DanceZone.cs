@@ -51,6 +51,11 @@ public class DanceZone : MonoBehaviour, IBeatObserver
             DormantRobot.SetDancerStatus(DancerStatus.Active);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
+        else if (m_currentState == DanceZoneState.Failure)
+        {
+            DormantRobot.SetDancerStatus(DancerStatus.Dead);
+            PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -86,8 +91,6 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         if(m_currentDanceNumber > DanceRotation.Count - 1)
         {
             m_currentDanceNumber = 0;
-            // TODO: REmove this next line
-            SetState(DanceZoneState.Success);
         }
         Debug.Log("Changing dance number to: " + m_currentDanceNumber.ToString());
         UpdateDanceNumbers();
@@ -107,6 +110,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
     public void OnSongLoaded()
     {
         ChangeDanceNumber();
+        OnMissedBeat();
     }
 
     public void OnSongEnded()
@@ -131,8 +135,17 @@ public class DanceZone : MonoBehaviour, IBeatObserver
 
     public void OnMissedBeat()
     {
-        if (DormantRobot != null)
-            DormantRobot.CurrentHealth -= DamageOnMissedBeat;
+        if(m_currentState == DanceZoneState.Dancing)
+        {
+            if (DormantRobot != null)
+            {
+                DormantRobot.CurrentHealth -= DamageOnMissedBeat;
+                if(DormantRobot.CurrentHealth <= 0f)
+                {
+                    SetState(DanceZoneState.Success);
+                }
+            }
+        }
     }
     public Vector3 Position
     {

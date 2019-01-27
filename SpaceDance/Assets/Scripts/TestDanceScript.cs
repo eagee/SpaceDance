@@ -204,6 +204,11 @@ public class TestDanceScript : MonoBehaviour, IBeatObserver {
     {
         ChangeDance();
     }
+
+    public void OnMissedBeat()
+    {
+        
+    }
     public Vector3 Position
     {
         get

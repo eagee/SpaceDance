@@ -120,6 +120,10 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
         
     }
 
+    public void OnMissedBeat()
+    {
+        
+    }
     public Vector3 Position
     {
         get

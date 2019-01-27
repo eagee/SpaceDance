@@ -42,7 +42,14 @@ public class Dancer : MonoBehaviour, IBeatObserver
     public float CurrentHealth
     {
         get { return m_currentHealth; }
-        set { m_currentHealth = value; }
+        set {
+            m_currentHealth = value;
+            if(m_currentHealth < 0f)
+            {
+                m_currentHealth = 0f;
+                SetDancerStatus(DancerStatus.Dead);
+            }
+        }
     }
     private float m_HorizontalVelocity;
     private float m_VerticalVelocity;
@@ -356,6 +363,10 @@ public class Dancer : MonoBehaviour, IBeatObserver
        
     }
 
+    public void OnMissedBeat()
+    {
+        
+    }
     public Vector3 Position
     {
         get

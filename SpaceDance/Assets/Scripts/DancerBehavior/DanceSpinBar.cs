@@ -96,6 +96,11 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
     {
         //UpdateBehavior();
     }
+
+    public void OnMissedBeat()
+    {
+        
+    }
     public Vector3 Position
     {
         get
