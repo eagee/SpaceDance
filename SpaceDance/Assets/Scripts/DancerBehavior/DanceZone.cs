@@ -33,6 +33,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
 
     void SetState(DanceZoneState state)
     {
+        //Debug.Log("SetState Dance Zone: " + gameObject.name + " State: " + state.ToString());
         if(m_currentState != DanceZoneState.Failure && m_currentState != DanceZoneState.Success)
         m_currentState = state;
         if(m_currentState == DanceZoneState.Dancing)
@@ -45,7 +46,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         }
         if(m_currentState == DanceZoneState.Success)
         {
-            DormantRobot.SetDancerStatus(DancerStatus.Dead);
+            DormantRobot.SetDancerStatus(DancerStatus.Active);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
     }
