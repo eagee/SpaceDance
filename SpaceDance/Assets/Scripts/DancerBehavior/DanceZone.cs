@@ -8,7 +8,8 @@ public class DanceZone : MonoBehaviour, IBeatObserver
     {
         Idle,
         Dancing,
-        Done
+        Success,
+        Failure
     }
 
     public Dancer DormantRobot;
@@ -40,6 +41,11 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         else
         {
             Camera.target = PlayerRobot.transform;
+        }
+        if(m_currentState == DanceZoneState.Success)
+        {
+            DormantRobot.SetDancerStatus(DancerStatus.Active);
+            PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
     }
 
@@ -76,6 +82,8 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         if(m_currentDanceNumber > DanceRotation.Count - 1)
         {
             m_currentDanceNumber = 0;
+            // TODO: REmove this next line
+            SetState(DanceZoneState.Success);
         }
         Debug.Log("Changing dance number to: " + m_currentDanceNumber.ToString());
         UpdateDanceNumbers();

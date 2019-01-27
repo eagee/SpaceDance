@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2456553163388878592}
   - component: {fileID: 2637405307373248512}
   - component: {fileID: 6037304679117584920}
+  - component: {fileID: 1951328293}
   m_Layer: 0
   m_Name: Spark Burst
   m_TagString: Untagged
@@ -4756,3 +4757,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1951328293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421416450935414771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4881dc2450a8c94caddb56a8b6b823d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTimeout: 2

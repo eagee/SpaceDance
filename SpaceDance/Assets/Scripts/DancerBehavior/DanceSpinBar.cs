@@ -45,6 +45,8 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
             
         if(m_danceNumber == 0)
         {
+            Vector3 rot = new Vector3(0f, 0f, 25f * Time.deltaTime);
+            this.transform.Rotate(rot);
             vec.x = Mathf.Lerp(vec.x, adjustedTargetSize, Time.deltaTime);
             this.transform.localScale = vec;
         }

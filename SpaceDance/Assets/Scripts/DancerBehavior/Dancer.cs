@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PolyNav;
 
 /// <summary>
 /// IBeatObserver implementation that can be used to handle all dance behavior and character animations.
@@ -14,10 +15,16 @@ public class Dancer : MonoBehaviour, IBeatObserver
     public float DanceMagnitude = 2f;
     public Transform TransformToFollow;
     public Dancer DanceBuddy;
+    public GameObject SparkEffect;
+    public List<Transform> RepairPoints;
+    public float RepairTime = 5f;
+    private int m_repairIndex = 0;
+    private float m_repairTimer = 10f;
 
     /// <summary>
     ///  Direction and behavioral values/consts 
     /// </summary>
+    private const int DORMANT = -1;
     private const int SOUTH = 0;
     private const int EAST = 1;
     private const int NORTH = 2;
@@ -35,11 +42,22 @@ public class Dancer : MonoBehaviour, IBeatObserver
     private int m_danceNumber;
     private Vector3 m_targetPosition;
     private Vector3 m_startingOffset;
+    private float m_floatingSpeed = 0.01f;
+
+    public DancerStatus GetDancerStatus()
+    {
+        return m_currentStatus;
+    }
 
     public void SetDancerStatus(DancerStatus status)
     {
+        if(m_currentStatus == DancerStatus.Dormant && status != DancerStatus.Dormant && status != DancerStatus.Controllable)
+        {
+            GameObject.Instantiate(SparkEffect, this.transform.position, this.transform.rotation);
+        }
+
         m_currentStatus = status;
-        if(m_currentStatus == DancerStatus.Controllable)
+        if(m_currentStatus == DancerStatus.Controllable || m_currentStatus == DancerStatus.Active)
         {
             GetComponent<BoxCollider2D>().enabled = true;
         }
@@ -47,6 +65,16 @@ public class Dancer : MonoBehaviour, IBeatObserver
         {
             GetComponent<BoxCollider2D>().enabled = false;
         }
+        if(m_currentStatus == DancerStatus.Dormant)
+        {
+            GetComponent<Animator>().SetInteger("Direction", DORMANT); 
+        }
+        else if (m_currentStatus == DancerStatus.Dead)
+        {
+            GetComponent<Animator>().SetInteger("Direction", DORMANT);
+            GetComponentInChildren<RepairScript>().enabled = true;
+        }
+        
     }
 
     public void SetDanceNumber(int danceNumber)
@@ -61,6 +89,8 @@ public class Dancer : MonoBehaviour, IBeatObserver
         SetDancerStatus(StartingStatus);
         m_currentHealth = StartingHealth;
         m_startingOffset = this.transform.position;
+        m_repairIndex = 0;
+        m_repairTimer = 3f;
     }
 
     void HandleControllableState()
@@ -108,7 +138,6 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
         // Handle our movement animation
         GetComponent<Animator>().SetInteger("Direction", m_direction);
-        GetComponent<Animator>().SetBool ("Dancing", true);
         m_direction++;
         if (m_direction > WEST)
         {
@@ -128,6 +157,16 @@ public class Dancer : MonoBehaviour, IBeatObserver
         m_targetPosition = TransformToFollow.position;
         GetComponent<Animator>().SetBool("Dancing", false);
 
+        // Set our sorting order assuming y depth translates to z depth
+        if (DanceBuddy.transform.position.y > this.transform.position.y)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 0;
+        }
+
         // Handle our movement animation
         if (GetComponent<Animator>().GetInteger("Direction") != SPIN)
             GetComponent<Animator>().SetInteger("Direction", SPIN);
@@ -142,7 +181,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     private void DoWaltz()
     {
         GetComponent<Animator>().speed = 1.0f;
-        GetComponent<Animator>().SetBool("Dancing", true);
+        GetComponent<Animator>().SetBool("Dancing", false);
         m_targetPosition = TransformToFollow.position;
 
         // Set our sorting order assuming y depth translates to z depth
@@ -159,22 +198,22 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
         if ((angle >= 315f && angle <= 360f) || (angle >= 0f && angle < 45f))
         {
-            if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "E: " + angle.ToString();
+            //if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "E: " + angle.ToString();
             m_direction = EAST;
         }
         else if (angle >= 45f && angle < 135f)
         {
-            if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "N: " + angle.ToString();
+            //if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "N: " + angle.ToString();
             m_direction = NORTH;
         }
         else if (angle >= 135f && angle < 225f)
         {
-            if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "W: " + angle.ToString();
+            //if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "W: " + angle.ToString();
             m_direction = WEST;
         }
         else if (angle >= 225f && angle < 315f)
         {
-            if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "S: " + angle.ToString();
+            //if (GetComponentInChildren<TextMesh>()) GetComponentInChildren<TextMesh>().text = "S: " + angle.ToString();
             m_direction = SOUTH;
         }
 
@@ -194,6 +233,16 @@ public class Dancer : MonoBehaviour, IBeatObserver
     {
         if (m_danceNumber == 0)
         {
+            GetComponent<Animator>().SetBool("Dancing", true);
+            // Set our sorting order assuming y depth translates to z depth
+            if (DanceBuddy.transform.position.y > this.transform.position.y)
+            {
+                GetComponent<SpriteRenderer>().sortingOrder = 1;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sortingOrder = 0;
+            }
             LerpToTargetPosition();
         }
         else if (m_danceNumber == 1)
@@ -208,6 +257,26 @@ public class Dancer : MonoBehaviour, IBeatObserver
         }
     }
 
+    void HandleActiveBehavior()
+    {
+        GetComponent<Animator>().SetInteger("Direction", NORTH);
+        //GetComponent<Animator>().SetBool("Dancing", true);
+        m_repairTimer += Time.deltaTime;
+        if(m_repairTimer >= RepairTime)
+        {
+            m_repairTimer = 0f;
+            m_repairIndex++;
+            if(m_repairIndex > RepairPoints.Count - 1)
+            {
+                m_repairIndex = 0;
+            }
+            if(RepairPoints[m_repairIndex] != null)
+            {
+                GetComponent<PolyNavAgent>().SetDestination(RepairPoints[m_repairIndex].position);
+            }
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -217,11 +286,29 @@ public class Dancer : MonoBehaviour, IBeatObserver
         }
     }
 
+    void HandleDeadBehavior()
+    {
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * Time.deltaTime * m_floatingSpeed);
+        GetComponent<Rigidbody2D>().AddForce(Vector2.left * Time.deltaTime * m_floatingSpeed);
+        GetComponent<Rigidbody2D>().freezeRotation = false;
+        m_floatingSpeed -= 0.0001f;
+        if (m_floatingSpeed < 0f) m_floatingSpeed = 0f;
+        transform.Rotate(0f, 0f, 0.08f);
+    }
+
     void Update()
     {
         if (m_currentStatus == DancerStatus.Dancing)
         {
             HandleCurrentDance();
+        }
+        else if(m_currentStatus == DancerStatus.Active)
+        {
+            HandleActiveBehavior();
+        }
+        else if (m_currentStatus == DancerStatus.Dead)
+        {
+            HandleDeadBehavior();
         }
     }
 
