@@ -82,7 +82,7 @@ public class RhythmEventController : MonoBehaviour
         if (key == "Right") thisone = WordRight;
         if (retword != null) {
             retword = thisone.text;
-            thisone.text = NextTestWord();
+            thisone.text = nextword;
         }
         return retword;
     }
