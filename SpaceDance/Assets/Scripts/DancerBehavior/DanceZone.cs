@@ -94,7 +94,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
 
     public void OnSongLoaded()
     {
-
+        ChangeDanceNumber();
     }
 
     public void OnSongEnded()

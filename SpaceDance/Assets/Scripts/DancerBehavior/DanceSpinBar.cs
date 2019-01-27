@@ -26,24 +26,16 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
 
     public void UpdateBeat()
     {
-        if (m_danceNumber == 0)
+        
+        m_OnBeat = !m_OnBeat;
+        if (m_OnBeat)
         {
-            m_targetSize = m_baseSize;
+            m_targetSize = m_baseSize + BeatMagnitude;
         }
         else
         {
-            m_OnBeat = !m_OnBeat;
-            if (m_OnBeat)
-            {
-                m_targetSize = m_baseSize + BeatMagnitude;
-            }
-            else
-            {
-                m_targetSize = m_baseSize - BeatMagnitude;
-            }
+            m_targetSize = m_baseSize - BeatMagnitude;
         }
-
-        
     }
 	
 	// Update is called once per frame
@@ -65,7 +57,7 @@ public class DanceSpinBar : MonoBehaviour, IBeatObserver {
         }
         else if (m_danceNumber == 2)
         {
-            adjustedTargetSize -= 6.0f;
+            adjustedTargetSize -= 4.0f;
             Vector3 rot = new Vector3(0f, 0f, 130f * Time.deltaTime);
             this.transform.Rotate(rot);
             vec.x = Mathf.Lerp(vec.x, adjustedTargetSize, Time.deltaTime);

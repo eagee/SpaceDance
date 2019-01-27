@@ -58,7 +58,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     void Start()
     {
         m_danceNumber = 0;
-        m_currentStatus = StartingStatus;
+        SetDancerStatus(StartingStatus);
         m_currentHealth = StartingHealth;
         m_startingOffset = this.transform.position;
     }
@@ -108,6 +108,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
         // Handle our movement animation
         GetComponent<Animator>().SetInteger("Direction", m_direction);
+        GetComponent<Animator>().SetBool ("Dancing", true);
         m_direction++;
         if (m_direction > WEST)
         {
@@ -125,6 +126,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     private void DoSpinDance()
     {
         m_targetPosition = TransformToFollow.position;
+        GetComponent<Animator>().SetBool("Dancing", false);
 
         // Handle our movement animation
         if (GetComponent<Animator>().GetInteger("Direction") != SPIN)
@@ -139,7 +141,8 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
     private void DoWaltz()
     {
-        GetComponent<Animator>().speed = 0.5f;
+        GetComponent<Animator>().speed = 1.0f;
+        GetComponent<Animator>().SetBool("Dancing", true);
         m_targetPosition = TransformToFollow.position;
 
         // Set our sorting order assuming y depth translates to z depth

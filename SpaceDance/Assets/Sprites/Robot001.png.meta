@@ -26,7 +26,7 @@ TextureImporter:
     21300042: S4
     21300044: S5
     21300046: S6
-    21300048: Robot001_0
+    21300048: Dormant
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -145,7 +145,7 @@ TextureImporter:
       name: E1
       rect:
         serializedVersion: 2
-        x: 398
+        x: 397
         y: 808
         width: 99
         height: 255
@@ -285,7 +285,7 @@ TextureImporter:
       name: N2
       rect:
         serializedVersion: 2
-        x: 560
+        x: 561
         y: 568
         width: 150
         height: 225
@@ -305,7 +305,7 @@ TextureImporter:
       name: N3
       rect:
         serializedVersion: 2
-        x: 731
+        x: 732
         y: 571
         width: 150
         height: 222
@@ -325,10 +325,10 @@ TextureImporter:
       name: N4
       rect:
         serializedVersion: 2
-        x: 912
+        x: 916
         y: 564
-        width: 151
-        height: 229
+        width: 150
+        height: 228
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,7 +365,7 @@ TextureImporter:
       name: N6
       rect:
         serializedVersion: 2
-        x: 1257
+        x: 1256
         y: 584
         width: 157
         height: 211
@@ -622,15 +622,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot001_0
+      name: Dormant
       rect:
         serializedVersion: 2
-        x: 1672
-        y: 191
-        width: 133
-        height: 169
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1767
+        y: 12
+        width: 138
+        height: 213
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
