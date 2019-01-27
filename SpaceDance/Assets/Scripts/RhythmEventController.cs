@@ -72,11 +72,14 @@ public class RhythmEventController : MonoBehaviour
         if (CurrentStoryIndex != -1) {
             if (CurrentStory[CurrentStoryIndex].tokenType != 
                 RobotDancingSystem.SentenceTokenType.Normal) {
+                while (CurrentStory[CurrentStoryIndex].tokenType != 
+                       RobotDancingSystem.SentenceTokenType.Normal)
+                    CurrentStoryIndex++;
                 retword = "______";
             } else {
                 retword = CurrentStory[CurrentStoryIndex].tokenText;
+                CurrentStoryIndex++;
             }   
-            CurrentStoryIndex++;
             if (CurrentStoryIndex >= CurrentStory.Length) CurrentStoryIndex = -1;  
         }
         return retword;
