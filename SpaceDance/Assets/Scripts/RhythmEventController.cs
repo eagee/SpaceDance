@@ -66,6 +66,13 @@ public class RhythmEventController : MonoBehaviour
     public int CurrentStoryIndex = -1;
     public int DecisionTextIndex = -1;
 
+    void LoadDecisions()
+    {
+        WordUp.text = NextDecisionWord();
+        WordDown.text = NextDecisionWord();
+        WordLeft.text = NextDecisionWord();
+        WordRight.text = NextDecisionWord();
+    }
 
     string NextStoryWord() {
         string retword = "Error!";
@@ -80,7 +87,16 @@ public class RhythmEventController : MonoBehaviour
                 retword = CurrentStory[CurrentStoryIndex].tokenText;
                 CurrentStoryIndex++;
             }   
-            if (CurrentStoryIndex >= CurrentStory.Length) CurrentStoryIndex = -1;  
+            }   
+            CurrentStoryIndex++;
+            if (CurrentStoryIndex >= CurrentStory.Length)
+            {
+                CurrentStoryIndex = -1;
+                foreach (var observer in BeatObservers)
+                {
+                    observer.Result.OnDanceFinished();
+                }
+            }
         }
         return retword;
     }
@@ -138,10 +154,10 @@ public class RhythmEventController : MonoBehaviour
         magnitudeSmooth = rhythmTool.low.magnitudeSmooth;
         m_lastPrefabX = NotesRangeLeft.transform.position.x;
         v_NotesRangeMiddle = (NotesRangeTop.position + NotesRangeBottom.position) / 2f;
-        WordUp.text = NextDecisionWord();
-        WordDown.text = NextDecisionWord();
-        WordLeft.text = NextDecisionWord();
-        WordRight.text = NextDecisionWord();
+        WordUp.text = "";
+        WordDown.text = "";
+        WordLeft.text = "";
+        WordRight.text = "";
         ReadyForKey = false;
 
         if (audioClips.Count <= 0)
@@ -212,15 +228,21 @@ public class RhythmEventController : MonoBehaviour
                             tcolor.b = 0.1f;
                             LineEntered = true;
                         } else {
-                            if (m_TextMesh.text[0] == '_') {
-                                if (SelectedWord == "") {
-                                    m_TextMesh.text = "BLEEP!";
-                                    // You lose! Good day, sir!
-                                } else {
-                                    m_TextMesh.text = SelectedWord;
-                                    SelectedWord = "";
+                            if(m_TextMesh.text.Length > 0)
+                            { 
+                                if (m_TextMesh.text[0] == '_') {
+                                    if (SelectedWord == "") {
+                                        m_TextMesh.text = "BLEEP!";
+                                        foreach (var obv in BeatObservers)
+                                        {
+                                            obv.Result.OnMissedBeat();
+                                        }
+                                    } else {
+                                        m_TextMesh.text = SelectedWord;
+                                        SelectedWord = "";
+                                    }
+                                    LineExited = true;
                                 }
-                                LineExited = true;
                             }
                             tcolor.g = 1f;
                             tcolor.a = 0.5f;
@@ -231,6 +253,26 @@ public class RhythmEventController : MonoBehaviour
                     if (LineExited) ReadyForKey = false;
                     if (LineEntered) ReadyForKey = true;
                 }
+            }
+
+            // If we're dancing...
+            foreach (var oblv in BeatObservers)
+            {
+                if (oblv != null && observer.Result.ObserverGameObject != null)
+                {
+                    DanceZone zone = oblv.Result.ObserverGameObject.GetComponent<DanceZone>();
+                    if (zone != null)
+                    {
+                        if (zone.m_currentState == DanceZone.DanceZoneState.Success || zone.m_currentState == DanceZone.DanceZoneState.Failure)
+                        {
+                            foreach (var obv in BeatObservers)
+                            {
+                                obv.Result.OnDanceFinished();
+                            }
+                        }
+                    }
+                }
+                
             }
         }
 
@@ -243,14 +285,19 @@ public class RhythmEventController : MonoBehaviour
                     DanceZone zone = observer.Result.ObserverGameObject.GetComponent<DanceZone>();
                     if (zone != null) {
                         Debug.Log("I found a dance zone!");
-                        if (zone.enabled && zone.m_currentState == DanceZone.DanceZoneState.Dancing) {
+                        if (zone.m_currentState == DanceZone.DanceZoneState.Dancing) {
                             Debug.Log("I found an Dancing dance zone!");
                             Debug.Log("Its text is " + zone.Story);
+                            foreach (var obv in BeatObservers)
+                            {
+                                obv.Result.OnDanceStarted();
+                            }
                             CurrentStory = RobotTextParser.Parse(zone.Story);
                             CurrentStoryIndex = 0;
-
+                            DecisionTextIndex = 0;
+                            LoadDecisions();
                         }
-                        if (zone.enabled && zone.m_currentState == DanceZone.DanceZoneState.Idle) {
+                        if (zone.m_currentState == DanceZone.DanceZoneState.Idle) {
                             Debug.Log("I found an Idle dance zone!");
                         }
                     }
@@ -306,8 +353,8 @@ public class RhythmEventController : MonoBehaviour
     private IBeatObserverSyncContainer CreateBeat(int onsetIndex, GameObject prefab, float opacity, float xPosition, float yPosition, string text)
     {
         GameObject beatObject = Instantiate(prefab) as GameObject;
-            xPosition += Random.value;
-        beatObject.transform.position = new Vector3(xPosition, yPosition, -1f);
+        xPosition += Random.value;
+        beatObject.transform.position = new Vector3(xPosition, yPosition, 10f);
         BeatBehavior beatObserver = beatObject.GetComponent<BeatBehavior>();
         beatObserver.Text = text;
         beatObserver.Opacity = opacity;
@@ -325,7 +372,7 @@ public class RhythmEventController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
-        if (ReadyForKey && SelectedWord == "") {
+        if (DecisionTextIndex != -1 && ReadyForKey && SelectedWord == "") {
             if (Input.GetKeyDown(KeyCode.UpArrow)) {
                 SelectedWord = GetWord("Up");
             }

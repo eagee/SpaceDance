@@ -83,6 +83,11 @@ public class TransitionPosition : MonoBehaviour, IBeatObserver {
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        
+    }
     public Vector3 Position
     {
         get
@@ -114,4 +119,11 @@ public class TransitionPosition : MonoBehaviour, IBeatObserver {
             
         }
     }
+
+    public void OnDanceStarted()
+    {
+
+    }
+
+
 }

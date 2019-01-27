@@ -294,6 +294,11 @@ public class Laser : MonoBehaviour, IBeatObserver
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        
+    }
     public Vector3 Position
     {
         get
@@ -324,5 +329,10 @@ public class Laser : MonoBehaviour, IBeatObserver
         {
             m_OnsetIndex = value;
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 }

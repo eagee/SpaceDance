@@ -42,6 +42,11 @@ public interface IBeatObserver {
     /// </summary>
     void OnMissedBeat();
     /// <summary>
+    ///  Sent out when the dance is finished.
+    /// </summary>
+    void OnDanceFinished();
+    void OnDanceStarted();
+    /// <summary>
     /// Exposes the position for this object, allowing it to be modified by the 
     /// rhythm controller if necessary.
     /// </summary>

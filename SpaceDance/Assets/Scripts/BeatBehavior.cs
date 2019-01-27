@@ -124,6 +124,12 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
     {
         
     }
+
+    public void OnDanceFinished()
+    {
+        GameObject.Destroy(this.gameObject);
+    }
+
     public Vector3 Position
     {
         get
@@ -154,5 +160,10 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
         {
             m_OnsetIndex = value;
         }
+    }
+
+    public void OnDanceStarted()
+    {
+
     }
 }
