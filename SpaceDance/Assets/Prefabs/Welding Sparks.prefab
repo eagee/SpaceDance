@@ -4709,6 +4709,7 @@ GameObject:
   - component: {fileID: 5690260695853281865}
   - component: {fileID: 3730131787083874501}
   - component: {fileID: 1616644505737142498}
+  - component: {fileID: 1898543131}
   m_Layer: 0
   m_Name: Welding Sparks
   m_TagString: Untagged
@@ -9397,3 +9398,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1898543131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5888357084447868850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4881dc2450a8c94caddb56a8b6b823d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTimeout: 1
