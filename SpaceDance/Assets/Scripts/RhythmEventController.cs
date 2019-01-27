@@ -10,6 +10,7 @@ public class RhythmEventController : MonoBehaviour
     public float ScrollPerBeat;
     public float MinLineSpacing;
     public float BeatPrefabSpacingSize = 0.5f;
+    public string SelectedWord = "";
 
     /// <summary>
     /// Transform at location furthest left side of the scene where notes will be generated from.
@@ -56,12 +57,34 @@ public class RhythmEventController : MonoBehaviour
     public string[] TestWords;
     public int TestWordIndex;
 
+    public TextMesh WordUp;
+    public TextMesh WordDown;
+    public TextMesh WordLeft;
+    public TextMesh WordRight;
+    public bool ReadyForKey;
+
     string NextTestWord() {
         TestWordIndex++;
         if (TestWordIndex >= TestWords.Length) {
             TestWordIndex = 0;
         }
         return TestWords[TestWordIndex];
+    }
+
+    string GetWord(string key) {
+        string retword = "error";
+        TextMesh thisone = null;
+        string nextword = "_";
+        while (nextword[0] == '_') nextword = NextTestWord();
+        if (key == "Up") thisone = WordUp;
+        if (key == "Down") thisone = WordDown;
+        if (key == "Left") thisone = WordLeft;
+        if (key == "Right") thisone = WordRight;
+        if (retword != null) {
+            retword = thisone.text;
+            thisone.text = NextTestWord();
+        }
+        return retword;
     }
 
     void Start()
@@ -76,6 +99,12 @@ public class RhythmEventController : MonoBehaviour
         magnitudeSmooth = rhythmTool.low.magnitudeSmooth;
         m_lastPrefabX = NotesRangeLeft.transform.position.x;
         v_NotesRangeMiddle = (NotesRangeTop.position + NotesRangeBottom.position) / 2f;
+        WordUp.text = NextTestWord();
+        WordDown.text = NextTestWord();
+        WordLeft.text = NextTestWord();
+        WordRight.text = NextTestWord();
+        ReadyForKey = false;
+
         if (audioClips.Count <= 0)
         {
             Debug.LogWarning("no songs configured");
@@ -121,7 +150,8 @@ public class RhythmEventController : MonoBehaviour
     {
         // default to there being enough space
         float lowest = NotesRangeBottom.position.y + MinLineSpacing + 1f;
-
+        bool LineExited = false;
+        bool LineEntered = false;
         // destroy what's gone off the top, dim what's gone past the middle
         foreach (var observer in BeatObservers)
         {
@@ -135,37 +165,36 @@ public class RhythmEventController : MonoBehaviour
                         lowest = pos.y;
                     observer.Result.Position = pos;
                     // TODO: replace this, it's super inefficient.
-                    if (pos.y > v_NotesRangeMiddle.y - 1f) {
+                    if (pos.y > v_NotesRangeMiddle.y - 4f) {
                         TextMesh m_TextMesh = 
                             observer.Result.ObserverGameObject.GetComponentInChildren<TextMesh>();
                         Color tcolor = m_TextMesh.color;
-                        if (pos.y < v_NotesRangeMiddle.y + 1f) {
-                            tcolor.g = 0.1f;
+                        if (pos.y < v_NotesRangeMiddle.y) {
+                            tcolor.b = 0.1f;
+                            LineEntered = true;
                         } else {
+                            if (m_TextMesh.text[0] == '_') {
+                                if (SelectedWord == "") {
+                                    m_TextMesh.text = "BLEEP!";
+                                    // You lose! Good day, sir!
+                                } else {
+                                    m_TextMesh.text = SelectedWord;
+                                    SelectedWord = "";
+                                }
+                                LineExited = true;
+                            }
                             tcolor.g = 1f;
                             tcolor.a = 0.5f;
                         }
                         m_TextMesh.color = tcolor;
                     }
                     // end TODO
+                    if (LineExited) ReadyForKey = false;
+                    if (LineEntered) ReadyForKey = true;
                 }
             }
         }
-        // dim what's gone past the middle
-        foreach (var observer in BeatObservers)
-        {
-            if (observer != null) {
-                observer.Result.OnBeat(beat);
-                if (observer.Result.Tag() == "Beat" && observer.Result.ObserverGameObject != null)
-                { 
-                    Vector3 pos = observer.Result.Position;
-                    pos.y += ScrollPerBeat;
-                    if (pos.y < lowest)
-                        lowest = pos.y;
-                    observer.Result.Position = pos;
-                }
-            }
-        }
+
         // Add another line of text only if we have room
         if (lowest > NotesRangeBottom.position.y + MinLineSpacing) {
             float yPos = NotesRangeBottom.position.y;
@@ -229,9 +258,22 @@ public class RhythmEventController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             NextSong();
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
-
+        if (ReadyForKey && SelectedWord == "") {
+            if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                SelectedWord = GetWord("Up");
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                SelectedWord = GetWord("Down");
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                SelectedWord = GetWord("Left");
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                SelectedWord = GetWord("Right");
+            }
+        }
         if (rhythmTool.songLoaded)
         {
             UpdateBeatObjects();

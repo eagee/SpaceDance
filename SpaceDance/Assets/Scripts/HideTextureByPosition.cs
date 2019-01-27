@@ -25,9 +25,9 @@ public class HideTextureByPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Renderer>().sharedMaterial.SetFloat(ParameterToChange, Target.position.y);
-        GetComponent<Renderer>().sharedMaterial.SetFloat("_SinOffset", m_sineOffset);
-        m_sineOffset += 0.1f;
+        // GetComponent<Renderer>().sharedMaterial.SetFloat(ParameterToChange, Target.position.y);
+        // GetComponent<Renderer>().sharedMaterial.SetFloat("_SinOffset", m_sineOffset);
+        // m_sineOffset += 0.1f;
     }
 }
 
