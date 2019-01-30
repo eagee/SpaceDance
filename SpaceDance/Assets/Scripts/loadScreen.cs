@@ -13,7 +13,7 @@ public class loadScreen : MonoBehaviour
         if (Input.anyKey)
         {
             Debug.Log("A key or mouse click has been detected");
-            SceneManager.LoadScene("EagansScene", LoadSceneMode.Single); 
+            SceneManager.LoadScene("EaganScene", LoadSceneMode.Single); 
         }
     }
 }

@@ -53,7 +53,7 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         }
         else if (m_currentState == DanceZoneState.Failure)
         {
-            DormantRobot.SetDancerStatus(DancerStatus.Dead);
+            DormantRobot.SetDancerStatus(DancerStatus.Active);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
     }

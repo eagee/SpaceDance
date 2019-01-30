@@ -76,6 +76,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
         if(m_currentStatus == DancerStatus.Controllable || m_currentStatus == DancerStatus.Active)
         {
+            GetComponent<Animator>().SetBool("Dancing", false);
             GetComponent<BoxCollider2D>().enabled = true;
         }
         else
@@ -84,6 +85,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
         }
         if(m_currentStatus == DancerStatus.Dormant)
         {
+            GetComponent<Animator>().SetBool("Dancing", false);
             GetComponent<Animator>().SetInteger("Direction", DORMANT); 
         }
         else if (m_currentStatus == DancerStatus.Dead)
@@ -278,7 +280,9 @@ public class Dancer : MonoBehaviour, IBeatObserver
     void HandleActiveBehavior()
     {
         GetComponent<Animator>().SetInteger("Direction", RepairDirection);
-        //GetComponent<Animator>().SetBool("Dancing", true);
+
+        //Debug.Log("Shield bot velocity: " + GetComponent<Rigidbody2D>().velocity.ToString());
+
         m_repairTimer += Time.deltaTime;
         if(m_repairTimer >= RepairTime)
         {

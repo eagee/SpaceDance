@@ -382,6 +382,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e2d768dfe168744b5f068e13987b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &257040198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8525128605157548200, guid: 18655bcef13c23e4fb1bc536120cc83d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8525128604798657156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &257040199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257040198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307ca5cd8da74254ab5d892306f74dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &282068949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1548,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8525128604798657156}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 257040198}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33e2d768dfe168744b5f068e13987b38, type: 3}
@@ -3235,12 +3253,12 @@ PolygonCollider2D:
       - {x: 56.24494, y: 8.565365}
       - {x: 54.940617, y: 9.1785755}
       - {x: 54.200104, y: 8.263767}
-      - {x: 52.62579, y: 5.7085433}
-      - {x: 50.90707, y: 6.4490743}
+      - {x: 53.139275, y: 2.6290302}
+      - {x: 52.06242, y: 2.7279963}
       - {x: 52.219406, y: 9.87092}
       - {x: 48.03923, y: 11.836782}
       - {x: 44.879543, y: 12.944742}
-      - {x: 42.389923, y: 9.081064}
+      - {x: 42.261555, y: 7.156367}
       - {x: 42.663834, y: 13.622691}
 --- !u!114 &1603191123
 MonoBehaviour:
@@ -4090,7 +4108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2121041619, guid: 491311b88f9de9b40bbc8b32b0ca9336, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.7
+      value: 40.7
       objectReference: {fileID: 0}
     - target: {fileID: 2121041619, guid: 491311b88f9de9b40bbc8b32b0ca9336, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4613,10 +4631,15 @@ PrefabInstance:
       propertyPath: RepairTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8525128605467837746, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: StartingStatus
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.4
+      value: 47.3
       objectReference: {fileID: 0}
     - target: {fileID: 8525128605157548213, guid: 18655bcef13c23e4fb1bc536120cc83d,
         type: 3}
@@ -4673,5 +4696,50 @@ PrefabInstance:
       propertyPath: _map
       value: 
       objectReference: {fileID: 1603191123}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: stoppingDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: slowingDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: accelerationRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: decelerationRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: lookAheadDistance
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: avoidRadius
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: restrict
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525128604798657158, guid: 18655bcef13c23e4fb1bc536120cc83d,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18655bcef13c23e4fb1bc536120cc83d, type: 3}
