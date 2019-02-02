@@ -92,7 +92,10 @@ public class BeatBehavior : MonoBehaviour, IBeatObserver
 
     public string Tag()
     {
-        return this.gameObject.tag;
+        if (this.gameObject != null)
+            return this.gameObject.tag;
+        else
+            return "";
     }
 
     public void OnSongLoaded()

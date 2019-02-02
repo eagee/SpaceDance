@@ -76,18 +76,20 @@ public class RhythmEventController : MonoBehaviour
 
     string NextStoryWord() {
         string retword = "Error!";
-        if (CurrentStoryIndex != -1) {
-            if (CurrentStory[CurrentStoryIndex].tokenType != 
-                RobotDancingSystem.SentenceTokenType.Normal) {
-                while (CurrentStory[CurrentStoryIndex].tokenType != 
+        if (CurrentStoryIndex != -1)
+        {
+            if (CurrentStory[CurrentStoryIndex].tokenType != RobotDancingSystem.SentenceTokenType.Normal)
+            {
+                while (CurrentStory[CurrentStoryIndex].tokenType !=
                        RobotDancingSystem.SentenceTokenType.Normal)
                     CurrentStoryIndex++;
                 retword = "______";
-            } else {
+            }
+            else
+            {
                 retword = CurrentStory[CurrentStoryIndex].tokenText;
                 CurrentStoryIndex++;
-            }   
-            }   
+            }
             CurrentStoryIndex++;
             if (CurrentStoryIndex >= CurrentStory.Length)
             {

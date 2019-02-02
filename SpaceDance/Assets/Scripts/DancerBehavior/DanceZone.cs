@@ -48,12 +48,12 @@ public class DanceZone : MonoBehaviour, IBeatObserver
         }
         if(m_currentState == DanceZoneState.Success)
         {
-            DormantRobot.SetDancerStatus(DancerStatus.Active);
+            DormantRobot.SetDancerStatus(DancerStatus.Dead);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
         else if (m_currentState == DanceZoneState.Failure)
         {
-            DormantRobot.SetDancerStatus(DancerStatus.Active);
+            DormantRobot.SetDancerStatus(DancerStatus.Dead);
             PlayerRobot.SetDancerStatus(DancerStatus.Controllable);
         }
     }

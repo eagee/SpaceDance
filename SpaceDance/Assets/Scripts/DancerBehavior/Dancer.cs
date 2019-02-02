@@ -7,8 +7,21 @@ using PolyNav;
 /// IBeatObserver implementation that can be used to handle all dance behavior and character animations.
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PolyNavAgent))]
+[RequireComponent(typeof(Animator))]
 public class Dancer : MonoBehaviour, IBeatObserver
 {
+    /// <summary>
+    ///  Direction and behavioral values/consts 
+    /// </summary>
+    private const int DORMANT = -1;
+    private const int SOUTH = 0;
+    private const int EAST = 1;
+    private const int NORTH = 2;
+    private const int WEST = 3;
+    private const int SPIN = 4;
+    private int m_direction;
+
     public float StartingHealth = 1f;
     public DancerStatus StartingStatus = DancerStatus.Controllable;
     public float ControllableSpeed = 2f;
@@ -20,18 +33,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
     public float RepairTime = 5f;
     private int m_repairIndex = 0;
     private float m_repairTimer = 10f;
-    public int RepairDirection = 2;
-
-    /// <summary>
-    ///  Direction and behavioral values/consts 
-    /// </summary>
-    private const int DORMANT = -1;
-    private const int SOUTH = 0;
-    private const int EAST = 1;
-    private const int NORTH = 2;
-    private const int WEST = 3;
-    private const int SPIN = 4;
-    private int m_direction;
+    public int ActiveDirection = NORTH;
 
     /// <summary>
     ///  This is the state that robots will return to after a dance, provided they're not dead.
@@ -277,12 +279,51 @@ public class Dancer : MonoBehaviour, IBeatObserver
         }
     }
 
+    /// <summary>
+    /// Sets the current animation based on the current polynav state.
+    /// </summary>
+    void SetPolyNavAnimation()
+    {
+        PolyNavAgent nav = GetComponent<PolyNavAgent>();
+        Vector2 direction = nav.movingDirection;
+        int animDirection;
+
+        if(Mathf.Abs(direction.x) <= 0.1f && Mathf.Abs(direction.y) <= 0.1f)
+        {
+            animDirection = ActiveDirection;
+            GetComponent<Animator>().SetBool("Dancing", true);
+        }
+        else if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            GetComponent<Animator>().SetBool("Dancing", false);
+            if (direction.x > 0)
+            {
+                animDirection = EAST;
+            }
+            else
+            {
+                animDirection = WEST;
+            }
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Dancing", false);
+            if (direction.y > 0)
+            {
+                animDirection = NORTH;
+            }
+            else
+            {
+                animDirection = SOUTH;
+            }
+        }
+        GetComponent<Animator>().SetInteger("Direction", animDirection);
+    }
+
     void HandleActiveBehavior()
     {
-        GetComponent<Animator>().SetInteger("Direction", RepairDirection);
-
         //Debug.Log("Shield bot velocity: " + GetComponent<Rigidbody2D>().velocity.ToString());
-
+        SetPolyNavAnimation();
         m_repairTimer += Time.deltaTime;
         if(m_repairTimer >= RepairTime)
         {
@@ -310,6 +351,7 @@ public class Dancer : MonoBehaviour, IBeatObserver
 
     void HandleDeadBehavior()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * Time.deltaTime * m_floatingSpeed);
         GetComponent<Rigidbody2D>().AddForce(Vector2.left * Time.deltaTime * m_floatingSpeed);
         GetComponent<Rigidbody2D>().freezeRotation = false;
